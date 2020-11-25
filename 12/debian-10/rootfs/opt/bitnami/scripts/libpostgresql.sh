@@ -796,7 +796,7 @@ postgresql_start_bg() {
     else
         "${pg_ctl_cmd[@]}" "start" "${pg_ctl_flags[@]}" >/dev/null 2>&1
     fi
-    local -r pg_isready_args=("-U" "postgres")
+    local -r pg_isready_args=("-U" "postgres" "-p" "${POSTGRESQL_PORT_NUMBER}")
     local counter=$POSTGRESQL_INIT_MAX_TIMEOUT
     while ! "$POSTGRESQL_BIN_DIR"/pg_isready "${pg_isready_args[@]}" >/dev/null 2>&1; do
         sleep 1
